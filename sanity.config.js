@@ -1,5 +1,5 @@
 import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
+import {structureTool} from 'sanity/structure'
 import {schemaTypes} from './schemas'
 import {frFRLocale} from '@sanity/locale-fr-fr'
 
@@ -10,7 +10,7 @@ export default defineConfig({
   projectId: 'i7u835te',
   dataset: 'production',
 
-  plugins: [deskTool(), frFRLocale()],
+  plugins: [structureTool(), frFRLocale()],
 
   schema: {
     types: schemaTypes,
