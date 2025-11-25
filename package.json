@@ -26,6 +26,9 @@
     "styled-components": "^5.3.9"
   },
   "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
     "@sanity/eslint-config-studio": "^2.0.1",
     "@types/react": "^18.0.25",
     "@types/styled-components": "^5.1.26",

@@ -14,6 +14,16 @@ export default {
       by: [{field: 'date', direction: 'asc'}],
     },
   ],
+  fieldsets: [
+    {
+      name: 'seo',
+      title: 'SEO',
+      options: {
+        collapsible: true,
+        collapsed: false,
+      },
+    },
+  ],
   fields: [
     {
       name: 'title',
@@ -87,6 +97,45 @@ export default {
           type: 'youtube',
         },
       ],
+    },
+    // SEO Fields
+    {
+      name: 'customTitle',
+      type: 'string',
+      title: 'Titre SEO (balise <title>)',
+      description:
+        'Titre optimisé pour le SEO (max 60 caractères). Doit commencer par le mot-clé principal.',
+      placeholder: 'Avocat droit des affaires Paris | Cabinet TLMR',
+      validation: (Rule) => Rule.max(60).warning('Le titre SEO ne doit pas dépasser 60 caractères'),
+      fieldset: 'seo',
+    },
+    {
+      name: 'customH1',
+      type: 'string',
+      title: 'Titre H1',
+      description:
+        "Titre principal de la page (peut différer du titre SEO). Utilisé si renseigné, sinon le titre de l'article sera utilisé.",
+      fieldset: 'seo',
+    },
+    {
+      name: 'metaDescription',
+      type: 'text',
+      title: 'Meta Description',
+      description:
+        'Description affichée dans les résultats Google (155-160 caractères recommandés)',
+      rows: 3,
+      validation: (Rule) =>
+        Rule.min(120)
+          .max(160)
+          .warning('La meta description devrait faire entre 120 et 160 caractères'),
+      fieldset: 'seo',
+    },
+    {
+      name: 'canonicalUrl',
+      type: 'url',
+      title: 'URL Canonique',
+      description: "Laisser vide pour générer automatiquement l'URL canonique à partir du slug",
+      fieldset: 'seo',
     },
   ],
 }
