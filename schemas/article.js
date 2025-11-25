@@ -126,8 +126,9 @@ export default {
       rows: 3,
       validation: (Rule) =>
         Rule.min(120)
+          .warning('Trop court : minimum 120 caractères recommandé')
           .max(160)
-          .warning('La meta description devrait faire entre 120 et 160 caractères'),
+          .warning('Trop long : maximum 160 caractères'),
       fieldset: 'seo',
     },
     {
