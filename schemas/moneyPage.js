@@ -72,16 +72,6 @@ export default {
       fieldset: 'seo',
     },
 
-    // BREADCRUMB
-    {
-      name: 'breadcrumbParent',
-      type: 'string',
-      title: "Parent dans le fil d'Ariane",
-      description: 'Ex: "Expertises" ou "Nos Services"',
-      placeholder: 'Expertises',
-      fieldset: 'navigation',
-    },
-
     // MAIN CONTENT
     {
       name: 'mainContent',
@@ -360,14 +350,6 @@ export default {
       options: {
         collapsible: true,
         collapsed: false,
-      },
-    },
-    {
-      name: 'navigation',
-      title: 'Navigation',
-      options: {
-        collapsible: true,
-        collapsed: true,
       },
     },
   ],
