@@ -1,0 +1,18 @@
+# Ignore schema files - they are configuration, not application code
+schemas/
+
+# Build outputs
+dist/
+.sanity/
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+

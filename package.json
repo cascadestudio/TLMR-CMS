@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
+    "@babel/eslint-parser": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
     "@babel/preset-react": "^7.28.5",
     "@sanity/eslint-config-studio": "^2.0.1",

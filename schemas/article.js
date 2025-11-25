@@ -65,6 +65,19 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'categories',
+      type: 'array',
+      title: 'Catégories',
+      description: 'Catégories auxquelles appartient cet article',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'category'}],
+        },
+      ],
+      validation: (Rule) => Rule.min(1).warning('Au moins une catégorie est recommandée'),
+    },
+    {
       name: 'content',
       type: 'array',
       title: "Contenu de l'article",

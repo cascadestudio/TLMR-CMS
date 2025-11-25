@@ -1,9 +1,4 @@
 {
   "extends": "@sanity/eslint-config-studio",
-  "parserOptions": {
-    "requireConfigFile": false,
-    "babelOptions": {
-      "presets": ["@babel/preset-env", "@babel/preset-react"]
-    }
-  }
+  "ignorePatterns": ["schemas/**", "dist/**", ".sanity/**"]
 }
