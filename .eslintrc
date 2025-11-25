@@ -1,4 +1,4 @@
 {
   "extends": "@sanity/eslint-config-studio",
-  "ignorePatterns": ["schemas/**", "dist/**", ".sanity/**"]
+  "ignorePatterns": ["schemas/**", "dist/**", ".sanity/**", "sanity.config.js"]
 }

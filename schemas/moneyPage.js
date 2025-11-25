@@ -31,8 +31,7 @@ export default {
       description:
         'Titre optimisé pour le SEO (max 60 caractères). DOIT commencer par le mot-clé exact.',
       placeholder: 'Avocat droit des affaires Paris | Cabinet TLMR',
-      validation: (Rule) =>
-        Rule.required().max(60).warning('Le titre SEO ne doit pas dépasser 60 caractères'),
+      validation: (Rule) => Rule.max(60).warning('Le titre SEO ne doit pas dépasser 60 caractères'),
       fieldset: 'seo',
     },
     {
@@ -51,17 +50,10 @@ export default {
         'Description affichée dans les résultats Google (155-160 caractères recommandés)',
       rows: 3,
       validation: (Rule) =>
-        Rule.required().custom((value) => {
-          if (!value) return 'La meta description est obligatoire'
-          const length = value.length
-          if (length < 120) {
-            return `Trop court : ${length}/120 caractères minimum recommandé`
-          }
-          if (length > 160) {
-            return `Trop long : ${length}/160 caractères maximum`
-          }
-          return true
-        }),
+        Rule.min(120)
+          .warning('Trop court : minimum 120 caractères recommandé')
+          .max(160)
+          .warning('Trop long : maximum 160 caractères'),
       fieldset: 'seo',
     },
     {
@@ -324,23 +316,6 @@ export default {
       title: 'Afficher la date de mise à jour',
       description: 'Ex: "Page mise à jour en novembre 2025"',
       initialValue: true,
-    },
-
-    // CUSTOM HTML BLOCK (Optional)
-    {
-      name: 'enableCustomHTML',
-      type: 'boolean',
-      title: 'Activer le bloc HTML personnalisé',
-      description: 'Pour scripts de tracking ou intégrations SEO spéciales',
-      initialValue: false,
-    },
-    {
-      name: 'customHTML',
-      type: 'text',
-      title: 'Code HTML personnalisé',
-      description: 'Inséré uniquement si activé ci-dessus',
-      rows: 5,
-      hidden: ({parent}) => !parent?.enableCustomHTML,
     },
   ],
   fieldsets: [

@@ -1,6 +1,6 @@
 export default {
   name: 'category',
-  title: 'Catégorie',
+  title: 'Catégories',
   type: 'document',
   description: 'Catégories pour organiser les articles',
   fields: [
@@ -30,8 +30,29 @@ export default {
       description: 'Description de la catégorie',
       rows: 3,
     },
-    {name: 'customTitle', type: 'string', validation: (Rule) => Rule.max(60)},
-    {name: 'metaDescription', type: 'text', validation: (Rule) => Rule.min(120).max(160)},
+    // SEO Fields (for category list pages)
+    {
+      name: 'customTitle',
+      type: 'string',
+      title: 'Titre SEO (optionnel)',
+      description:
+        'Titre personnalisé pour la page listant les articles de cette catégorie (max 60 caractères)',
+      placeholder: 'Articles sur le droit des affaires | Cabinet TLMR',
+      validation: (Rule) => Rule.max(60).warning('Le titre SEO ne doit pas dépasser 60 caractères'),
+    },
+    {
+      name: 'metaDescription',
+      type: 'text',
+      title: 'Meta Description (optionnelle)',
+      description:
+        'Description pour les résultats Google de la page de catégorie (120-160 caractères)',
+      rows: 3,
+      validation: (Rule) =>
+        Rule.min(120)
+          .warning('Trop court : minimum 120 caractères recommandé')
+          .max(160)
+          .warning('Trop long : maximum 160 caractères'),
+    },
   ],
   preview: {
     select: {
