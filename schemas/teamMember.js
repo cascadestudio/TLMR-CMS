@@ -4,6 +4,21 @@ export default {
   type: 'document',
   fields: [
     {
+      name: 'teamType',
+      type: 'string',
+      title: "Type d'équipe",
+      description: 'Détermine le niveau de détail affiché',
+      options: {
+        list: [
+          {title: 'Équipe principale (profil complet)', value: 'core'},
+          {title: 'Équipe support et opérationnelle (nom + rôle)', value: 'support'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'core',
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'name',
       type: 'string',
       title: 'Nom complet',
@@ -14,33 +29,31 @@ export default {
       type: 'string',
       title: 'Fonction',
       placeholder: 'Avocat associé',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'photo',
       type: 'image',
       title: 'Photo',
-      description: 'Maximum 400 Ko recommandé',
-      validation: (Rule) => Rule.required(),
+      description: 'Maximum 400 Ko recommandé (requis pour équipe principale)',
       options: {
         hotspot: true,
       },
-    },
-    {
-      name: 'slug',
-      type: 'slug',
-      title: 'URL',
-      description: 'Pour la page de profil individuelle',
-      options: {
-        source: 'name',
-        maxLength: 96,
-      },
-      validation: (Rule) => Rule.required(),
+      hidden: ({parent}) => parent?.teamType === 'support',
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const teamType = context.parent?.teamType
+          if (teamType === 'core' && !value) {
+            return "La photo est obligatoire pour les membres de l'équipe principale"
+          }
+          return true
+        }),
     },
     {
       name: 'bio',
       type: 'array',
       title: 'Biographie',
-      description: 'Pour la page de profil individuelle',
+      description: "Texte de présentation sur la page de l'équipe",
       of: [
         {
           type: 'block',
@@ -55,94 +68,49 @@ export default {
           },
         },
       ],
+      hidden: ({parent}) => parent?.teamType === 'support',
     },
     {
-      name: 'specialties',
+      name: 'experience',
       type: 'array',
-      title: 'Spécialités',
+      title: 'Expérience',
       of: [{type: 'string'}],
       options: {
         layout: 'tags',
       },
+      hidden: ({parent}) => parent?.teamType === 'support',
     },
     {
-      name: 'email',
-      type: 'string',
-      title: 'Email',
-    },
-    {
-      name: 'phone',
-      type: 'string',
-      title: 'Téléphone',
-    },
-    {
-      name: 'linkedIn',
-      type: 'url',
-      title: 'LinkedIn',
-    },
-    // SEO Fields for team member profile pages
-    {
-      name: 'customTitle',
-      type: 'string',
-      title: 'Titre SEO (balise <title>)',
-      description:
-        'Titre optimisé pour le SEO (max 60 caractères). Laissez vide pour générer automatiquement.',
-      placeholder: 'Jean Dupont - Avocat droit des affaires | Cabinet TLMR',
-      validation: (Rule) => Rule.max(60).warning('Le titre SEO ne doit pas dépasser 60 caractères'),
-      fieldset: 'seo',
-    },
-    {
-      name: 'customH1',
-      type: 'string',
-      title: 'Titre H1',
-      description:
-        'Titre principal de la page (peut différer du titre SEO). Laissez vide pour utiliser le nom.',
-      fieldset: 'seo',
-    },
-    {
-      name: 'metaDescription',
-      type: 'text',
-      title: 'Meta Description',
-      description:
-        'Description affichée dans les résultats Google (155-160 caractères recommandés)',
-      rows: 3,
-      validation: (Rule) =>
-        Rule.custom((value) => {
-          if (!value) return true
-          const length = value.length
-          if (length < 120) {
-            return `Trop court : ${length}/120 caractères minimum recommandé`
-          }
-          if (length > 160) {
-            return `Trop long : ${length}/160 caractères maximum`
-          }
-          return true
-        }),
-      fieldset: 'seo',
-    },
-    {
-      name: 'canonicalUrl',
-      type: 'url',
-      title: 'URL Canonique',
-      description: "Laisser vide pour générer automatiquement l'URL canonique à partir du slug",
-      fieldset: 'seo',
-    },
-  ],
-  fieldsets: [
-    {
-      name: 'seo',
-      title: 'SEO',
+      name: 'engagements',
+      type: 'array',
+      title: 'Engagements',
+      of: [{type: 'string'}],
       options: {
-        collapsible: true,
-        collapsed: true,
+        layout: 'tags',
       },
+      hidden: ({parent}) => parent?.teamType === 'support',
+    },
+    {
+      name: 'linkedinUrl',
+      type: 'url',
+      title: 'URL LinkedIn',
+      hidden: ({parent}) => parent?.teamType === 'support',
     },
   ],
   preview: {
     select: {
       title: 'name',
-      subtitle: 'role',
+      role: 'role',
+      teamType: 'teamType',
       media: 'photo',
+    },
+    prepare({title, role, teamType, media}) {
+      const typeLabel = teamType === 'support' ? 'Support' : 'Équipe principale'
+      return {
+        title,
+        subtitle: `${typeLabel} • ${role || 'Sans fonction'}`,
+        media,
+      }
     },
   },
 }
