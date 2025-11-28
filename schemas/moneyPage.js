@@ -133,6 +133,10 @@ export default {
             },
           ],
         },
+        {
+          type: 'customHTMLBlock',
+          title: 'Bloc HTML personnalisé',
+        },
       ],
       validation: (Rule) => Rule.required(),
     },
@@ -143,59 +147,7 @@ export default {
       type: 'array',
       title: 'Sections CTA',
       description: "Appels à l'action stratégiques dans la page",
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'heading',
-              type: 'string',
-              title: 'Titre du CTA',
-              placeholder: "Besoin d'un avocat ?",
-            },
-            {
-              name: 'description',
-              type: 'text',
-              title: 'Description',
-              rows: 2,
-            },
-            {
-              name: 'buttonText',
-              type: 'string',
-              title: 'Texte du bouton',
-              placeholder: 'Prendre rendez-vous',
-              validation: (Rule) => Rule.required(),
-            },
-            {
-              name: 'buttonLink',
-              type: 'string',
-              title: 'Lien du bouton',
-              placeholder: '/contact',
-              validation: (Rule) => Rule.required(),
-            },
-            {
-              name: 'style',
-              type: 'string',
-              title: 'Style',
-              options: {
-                list: [
-                  {title: 'Principal', value: 'primary'},
-                  {title: 'Secondaire', value: 'secondary'},
-                  {title: 'Discret', value: 'subtle'},
-                ],
-                layout: 'radio',
-              },
-              initialValue: 'primary',
-            },
-          ],
-          preview: {
-            select: {
-              title: 'buttonText',
-              subtitle: 'heading',
-            },
-          },
-        },
-      ],
+      of: [{type: 'ctaSection'}],
     },
 
     // FAQ SECTION
@@ -204,70 +156,7 @@ export default {
       type: 'array',
       title: 'FAQ',
       description: 'Questions fréquentes avec Schema.org FAQPage',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'question',
-              type: 'string',
-              title: 'Question',
-              validation: (Rule) => Rule.required(),
-            },
-            {
-              name: 'answer',
-              type: 'array',
-              title: 'Réponse',
-              description: 'Peut inclure des liens internes',
-              of: [
-                {
-                  type: 'block',
-                  styles: [{title: 'Normal', value: 'normal'}],
-                  lists: [{title: 'Bullet', value: 'bullet'}],
-                  marks: {
-                    decorators: [
-                      {title: 'Strong', value: 'strong'},
-                      {title: 'Emphasis', value: 'em'},
-                    ],
-                    annotations: [
-                      {
-                        name: 'link',
-                        type: 'object',
-                        title: 'Lien externe',
-                        fields: [
-                          {
-                            name: 'href',
-                            type: 'url',
-                            title: 'URL',
-                          },
-                        ],
-                      },
-                      {
-                        name: 'internalLink',
-                        type: 'object',
-                        title: 'Lien interne',
-                        fields: [
-                          {
-                            name: 'reference',
-                            type: 'reference',
-                            title: 'Page',
-                            to: [{type: 'moneyPage'}, {type: 'article'}],
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          ],
-          preview: {
-            select: {
-              title: 'question',
-            },
-          },
-        },
-      ],
+      of: [{type: 'faqItem'}],
     },
 
     // RELATED SPECIALTIES

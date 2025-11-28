@@ -109,6 +109,10 @@ export default {
         {
           type: 'youtube',
         },
+        {
+          type: 'customHTMLBlock',
+          title: 'Bloc HTML personnalisé',
+        },
       ],
     },
     // SEO Fields
