@@ -137,6 +137,7 @@ export default {
           type: 'customHTMLBlock',
           title: 'Bloc HTML personnalisé',
         },
+        {type: 'table'},
       ],
       validation: (Rule) => Rule.required(),
     },

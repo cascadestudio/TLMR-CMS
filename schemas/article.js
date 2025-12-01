@@ -113,6 +113,7 @@ export default {
           type: 'customHTMLBlock',
           title: 'Bloc HTML personnalisé',
         },
+        {type: 'table'},
       ],
     },
     // SEO Fields
