@@ -140,21 +140,16 @@ export default {
         {type: 'table'},
         {
           type: 'reference',
-          title: 'CTA',
-          description: 'Ajouter un CTA de votre bibliothèque',
+          title: 'CTA (bibliothèque)',
+          description: 'Réutiliser un CTA existant de votre bibliothèque',
           to: [{type: 'ctaSectionDocument'}],
+          options: {
+            filter: 'defined(_id)',
+          },
+          weak: false,
         },
       ],
       validation: (Rule) => Rule.required(),
-    },
-
-    // CTA SECTIONS (LIBRARY)
-    {
-      name: 'ctaSections',
-      type: 'array',
-      title: 'Bibliothèque de CTA',
-      description: 'CTAs réutilisables - créez-les ici pour les réutiliser dans le contenu',
-      of: [{type: 'ctaSection'}],
     },
 
     // FAQ SECTION
