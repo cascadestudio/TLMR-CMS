@@ -1,3 +1,5 @@
+import {LinkIcon, DocumentIcon} from '@sanity/icons'
+
 export default {
   name: 'article',
   type: 'document',
@@ -93,6 +95,35 @@ export default {
           lists: [{title: 'Bullet', value: 'bullet'}],
           marks: {
             decorators: [{title: 'Emphasis', value: 'em'}],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Lien externe',
+                icon: LinkIcon,
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL',
+                  },
+                ],
+              },
+              {
+                name: 'internalLink',
+                type: 'object',
+                title: 'Lien interne',
+                icon: DocumentIcon,
+                fields: [
+                  {
+                    name: 'reference',
+                    type: 'reference',
+                    title: 'Page',
+                    to: [{type: 'moneyPage'}, {type: 'article'}],
+                  },
+                ],
+              },
+            ],
           },
         },
         {

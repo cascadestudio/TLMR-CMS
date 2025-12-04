@@ -1,3 +1,5 @@
+import {LinkIcon, DocumentIcon} from '@sanity/icons'
+
 export default {
   name: 'faqItem',
   title: 'Question FAQ',
@@ -29,6 +31,7 @@ export default {
                 name: 'link',
                 type: 'object',
                 title: 'Lien externe',
+                icon: LinkIcon,
                 fields: [
                   {
                     name: 'href',
@@ -41,6 +44,7 @@ export default {
                 name: 'internalLink',
                 type: 'object',
                 title: 'Lien interne',
+                icon: DocumentIcon,
                 fields: [
                   {
                     name: 'reference',

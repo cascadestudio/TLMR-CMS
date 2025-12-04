@@ -11,7 +11,20 @@ export default defineConfig({
   projectId: 'i7u835te',
   dataset: 'production',
 
-  plugins: [structureTool(), frFRLocale(), table()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Content')
+          .items(
+            S.documentTypeListItems().filter(
+              (listItem) => !['teamMember'].includes(listItem.getId())
+            )
+          ),
+    }),
+    frFRLocale(),
+    table(),
+  ],
 
   schema: {
     types: schemaTypes,
