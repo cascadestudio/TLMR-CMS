@@ -152,24 +152,37 @@ export default {
           },
           weak: false,
         },
+        {
+          type: 'faqBlock',
+          title: 'Section FAQ',
+        },
+        {
+          type: 'teamBlock',
+          title: 'Section Équipe',
+        },
+        {
+          type: 'relatedSpecialtiesBlock',
+          title: 'Spécialités connexes',
+        },
       ],
       validation: (Rule) => Rule.required(),
     },
 
-    // FAQ SECTION
+    // DEPRECATED FIELDS - kept for backward compatibility during migration
+    // Use the new block types in mainContent instead
     {
       name: 'faqItems',
       type: 'array',
-      title: 'FAQ',
+      title: 'FAQ (Deprecated - Use FAQ Block in mainContent)',
       description: 'Questions fréquentes avec Schema.org FAQPage',
       of: [{type: 'faqItem'}],
+      hidden: true,
     },
 
-    // RELATED SPECIALTIES
     {
       name: 'relatedSpecialties',
       type: 'array',
-      title: 'Spécialités connexes',
+      title: 'Spécialités connexes (Deprecated - Use Related Specialties Block in mainContent)',
       description: 'Liens vers autres Money Pages (minimum 3 recommandé)',
       of: [
         {
@@ -177,15 +190,13 @@ export default {
           to: [{type: 'moneyPage'}],
         },
       ],
-      validation: (Rule) =>
-        Rule.min(3).warning('Au moins 3 pages connexes sont recommandées pour le SEO'),
+      hidden: true,
     },
 
-    // TEAM SECTION
     {
       name: 'teamMembers',
       type: 'array',
-      title: "Membres de l'équipe à afficher",
+      title: "Membres de l'équipe (Deprecated - Use Team Block in mainContent)",
       description: 'Avocats à mettre en avant sur cette page',
       of: [
         {
@@ -193,6 +204,7 @@ export default {
           to: [{type: 'teamMember'}],
         },
       ],
+      hidden: true,
     },
 
     // SOCIAL PROOF - GOOGLE REVIEWS

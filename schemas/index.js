@@ -7,6 +7,9 @@ import ctaSection from './ctaSection'
 import ctaSectionDocument from './ctaSectionDocument'
 import faqItem from './faqItem'
 import customHTMLBlock from './customHTMLBlock'
+import faqBlock from './faqBlock'
+import teamBlock from './teamBlock'
+import relatedSpecialtiesBlock from './relatedSpecialtiesBlock'
 
 export const schemaTypes = [
   moneyPage,
@@ -18,4 +21,7 @@ export const schemaTypes = [
   ctaSectionDocument,
   faqItem,
   customHTMLBlock,
+  faqBlock,
+  teamBlock,
+  relatedSpecialtiesBlock,
 ]
