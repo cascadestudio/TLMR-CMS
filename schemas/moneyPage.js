@@ -8,10 +8,10 @@ export default {
   fields: [
     // BASIC INFO
     {
-      name: 'title',
+      name: 'customH1',
       type: 'string',
-      title: 'Titre interne',
-      description: "Pour l'organisation dans le CMS uniquement",
+      title: 'Titre H1',
+      description: 'Titre principal de la page',
       validation: (Rule) => Rule.required(),
     },
     {
@@ -19,7 +19,7 @@ export default {
       type: 'slug',
       title: 'URL',
       options: {
-        source: 'title',
+        source: 'customH1',
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
@@ -34,14 +34,6 @@ export default {
         'Titre optimisé pour le SEO (max 60 caractères). DOIT commencer par le mot-clé exact.',
       placeholder: 'Avocat droit des affaires Paris | Cabinet TLMR',
       validation: (Rule) => Rule.max(60).warning('Le titre SEO ne doit pas dépasser 60 caractères'),
-      fieldset: 'seo',
-    },
-    {
-      name: 'customH1',
-      type: 'string',
-      title: 'Titre H1',
-      description: 'Titre principal de la page (peut différer du titre SEO)',
-      validation: (Rule) => Rule.required(),
       fieldset: 'seo',
     },
     {
