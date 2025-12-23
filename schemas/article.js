@@ -94,7 +94,10 @@ export default {
           ],
           lists: [{title: 'Bullet', value: 'bullet'}],
           marks: {
-            decorators: [{title: 'Emphasis', value: 'em'}],
+            decorators: [
+              {title: 'Strong', value: 'strong'},
+              {title: 'Emphasis', value: 'em'},
+            ],
             annotations: [
               {
                 name: 'link',
@@ -145,6 +148,16 @@ export default {
           title: 'Bloc HTML personnalisé',
         },
         {type: 'table'},
+        {
+          type: 'reference',
+          title: 'CTA (bibliothèque)',
+          description: 'Réutiliser un CTA existant de votre bibliothèque',
+          to: [{type: 'ctaSectionDocument'}],
+          options: {
+            filter: 'defined(_id)',
+          },
+          weak: false,
+        },
       ],
     },
     // SEO Fields
