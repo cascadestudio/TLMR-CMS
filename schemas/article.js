@@ -145,6 +145,16 @@ export default {
           title: 'Bloc HTML personnalisé',
         },
         {type: 'table'},
+        {
+          type: 'reference',
+          title: 'CTA (bibliothèque)',
+          description: 'Réutiliser un CTA existant de votre bibliothèque',
+          to: [{type: 'ctaSectionDocument'}],
+          options: {
+            filter: 'defined(_id)',
+          },
+          weak: false,
+        },
       ],
     },
     // SEO Fields
