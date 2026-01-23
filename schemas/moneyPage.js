@@ -57,6 +57,16 @@ export default {
       description: "Laisser vide pour générer automatiquement l'URL canonique à partir du slug",
       fieldset: 'seo',
     },
+    {
+      name: 'ogImage',
+      type: 'image',
+      title: 'Image Open Graph',
+      description: 'Image affichee lors du partage sur les reseaux sociaux (1200x630px recommande)',
+      options: {
+        hotspot: true,
+      },
+      fieldset: 'seo',
+    },
 
     // MAIN CONTENT
     {
@@ -155,6 +165,10 @@ export default {
         {
           type: 'relatedSpecialtiesBlock',
           title: 'Spécialités connexes',
+        },
+        {
+          type: 'internalLinksBlock',
+          title: 'Bloc de liens internes (maillage)',
         },
       ],
       validation: (Rule) => Rule.required(),

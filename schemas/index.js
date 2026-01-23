@@ -10,6 +10,7 @@ import customHTMLBlock from './customHTMLBlock'
 import faqBlock from './faqBlock'
 import teamBlock from './teamBlock'
 import relatedSpecialtiesBlock from './relatedSpecialtiesBlock'
+import internalLinksBlock from './internalLinksBlock'
 
 export const schemaTypes = [
   moneyPage,
@@ -24,4 +25,5 @@ export const schemaTypes = [
   faqBlock,
   teamBlock,
   relatedSpecialtiesBlock,
+  internalLinksBlock,
 ]
