@@ -24,6 +24,25 @@ export default {
       },
       validation: (Rule) => Rule.required(),
     },
+    {
+      name: 'expertiseCategory',
+      type: 'string',
+      title: 'Catégorie Expertise',
+      description: 'Pour affichage sur la page /expertises/',
+      options: {
+        list: [
+          {title: 'Innovation, Propriété intellectuelle et industrielle', value: 'innovation-pi'},
+          {title: 'Internet, plateformes et e-commerce', value: 'internet-ecommerce'},
+          {title: 'Affaires complexes et contentieux à risque', value: 'affaires-contentieux'},
+          {title: 'Droit immobilier, copropriété, baux et construction', value: 'immobilier'},
+          {title: 'Pénal, Cybercriminalité et e-réputation', value: 'penal-cyber'},
+          {title: 'Informatique, logiciel, IA, Blockchain', value: 'it-ia-blockchain'},
+          {title: 'Données personnelles et conformité CNIL/RGPD', value: 'rgpd-cnil'},
+          {title: 'Droit du travail numérique et de la formation', value: 'travail-formation'},
+        ],
+        layout: 'dropdown',
+      },
+    },
 
     // SEO FIELDS (Critical Priority ⭐⭐⭐⭐⭐)
     {
