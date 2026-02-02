@@ -249,6 +249,62 @@ export default {
       description: 'Ex: "Page mise à jour en novembre 2025"',
       initialValue: true,
     },
+
+    // BOTTOM INTERNAL LINKS (Maillage interne)
+    {
+      name: 'bottomLinksTitle',
+      type: 'string',
+      title: 'Titre section maillage (bas de page)',
+      description: 'Titre au-dessus des liens (défaut: "Pour aller plus loin")',
+    },
+    {
+      name: 'bottomLinks',
+      type: 'array',
+      title: 'Liens de maillage (bas de page)',
+      description:
+        "Liens affichés en bas de page vers d'autres contenus. Nombre illimité. Chaque lien affiche un titre et une description.",
+      of: [
+        {
+          type: 'object',
+          name: 'bottomLinkItem',
+          title: 'Lien',
+          fields: [
+            {
+              name: 'page',
+              type: 'reference',
+              title: 'Page cible',
+              to: [{type: 'moneyPage'}, {type: 'article'}],
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'customTitle',
+              type: 'string',
+              title: 'Titre personnalisé (optionnel)',
+              description: 'Laissez vide pour utiliser le titre de la page',
+            },
+            {
+              name: 'customDescription',
+              type: 'text',
+              title: 'Description personnalisée (optionnel)',
+              description: 'Laissez vide pour utiliser la meta description de la page',
+              rows: 2,
+            },
+          ],
+          preview: {
+            select: {
+              customTitle: 'customTitle',
+              pageTitle: 'page.customH1',
+              articleTitle: 'page.title',
+            },
+            prepare({customTitle, pageTitle, articleTitle}) {
+              return {
+                title: customTitle || pageTitle || articleTitle || 'Lien',
+              }
+            },
+          },
+        },
+      ],
+    },
   ],
   fieldsets: [
     {
